@@ -17,13 +17,15 @@ chai.should();
 chai.use(sinonChai);
 
 
-/*
- * Spy on lets methods
- */
+/* Spies
+============================================================================= */
 
 sinon.spy(lets, 'load');
 sinon.spy(lets, 'runTasks');
 
+
+/* Tests
+============================================================================= */
 
 describe('$ lets deploy testing', function () {
   var testTask = 'deploy',
@@ -31,6 +33,9 @@ describe('$ lets deploy testing', function () {
 
   describe('with correct cwd', function () {
     before(function () {
+      cli.logger.log = sinon.spy();
+      cli.logger.error = sinon.spy();
+
       cli.argv({ _: [testTask, testStage] }, __dirname);
     });
 
@@ -50,9 +55,18 @@ describe('$ lets deploy testing', function () {
       lets.runTasks.should.be.calledWithExactly(
         lets.load.returnValues[0], testTask, testStage, cli.argv.done);
     });
+
+    it('should have exited ok', function () {
+      cli.logger.log.should.have.been.calledWithExactly('OK');
+    });
   });
 
   describe('with no Letsfile', function () {
+    before(function () {
+      cli.argv.letsfile = undefined;
+      cli.argv.lets = undefined;
+    });
+
     it('should throw an error', function () {
       expect(cli.argv.bind(
         cli, { _: [testTask, testStage] }, path.join(__dirname, '..')))
@@ -61,10 +75,39 @@ describe('$ lets deploy testing', function () {
   });
 
   describe('with no local lets', function () {
+    before(function () {
+      cli.argv.letsfile = undefined;
+      cli.argv.lets = undefined;
+    });
+
     it('should throw an error', function () {
       expect(cli.argv.bind(
         cli, { _: [testTask, testStage] }, '/lets-complete-and-utter-bogus'))
         .to.throw(cli.argv.letsError);
     });
+  });
+});
+
+
+describe('$ lets -v', function () {
+  var pkg = require('../package'),
+      letsPkg = require('lets/package');
+
+  before(function () {
+    cli.argv.letsfile = undefined;
+    cli.argv.lets = undefined;
+
+    cli.logger.log = sinon.spy();
+    cli.logger.error = sinon.spy();
+
+    cli.argv({ v: true }, __dirname);
+  });
+
+  it('should print the versions', function () {
+    cli.logger.log.firstCall.should.have.been.calledWithMatch(
+      new RegExp(pkg.name + ' v' + pkg.version.replace(/\./g, '\\.')));
+
+    cli.logger.log.secondCall.should.have.been.calledWithMatch(
+      new RegExp(letsPkg.name + ' v' + letsPkg.version.replace(/\./g, '\\.')));
   });
 });

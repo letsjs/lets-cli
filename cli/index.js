@@ -13,3 +13,5 @@ fs.readdirSync(__dirname).filter(function (file) {
 }).forEach(function (file) {
   exports[file] = require('./' + file);
 });
+
+exports.pkg = require('../package');
