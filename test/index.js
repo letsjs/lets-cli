@@ -11,7 +11,8 @@ var
     sinonChai = require('sinon-chai'),
     cli = require('../.'),
     lets = require('lets'),
-    letsfile = require('./Letsfile');
+    letsfile = require('./Letsfile'),
+    customLetsfile = require('./custom.letsfile.js');
 
 chai.should();
 chai.use(sinonChai);
@@ -58,6 +59,19 @@ describe('$ lets deploy testing', function () {
 
     it('should have exited ok', function () {
       cli.logger.log.should.have.been.calledWithExactly('OK');
+    });
+  });
+
+  describe('--letsfile=custom.letsfile.js', function () {
+    before(function () {
+      cli.argv.letsfile = undefined;
+      cli.argv.lets = undefined;
+
+      cli.argv({ _: [testTask, 'testing2'], letsfile: 'custom.letsfile.js' }, __dirname);
+    });
+    
+    it('should load the specified Letsfile', function () {
+      cli.argv.letsfile.should.equal(customLetsfile);
     });
   });
 

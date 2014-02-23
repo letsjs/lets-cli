@@ -11,6 +11,7 @@ module.exports = exports = function (argv, cwd) {
   var config;
 
   exports.cwd = cwd;
+  exports.argv = argv;
 
   if(argv.v || argv.version) {
     return version(cwd);
@@ -56,7 +57,12 @@ exports.requireLetsfile = function () {
   }
 
   try {
-    exports.letsfile = require(path.join(findup.sync(exports.cwd, 'Letsfile.js'), 'Letsfile'));
+    if(exports.argv.letsfile) {
+      exports.letsfile = require(path.resolve(exports.cwd, exports.argv.letsfile));
+    }
+    else {
+      exports.letsfile = require(path.join(findup.sync(exports.cwd, 'Letsfile.js'), 'Letsfile'));
+    }
   }
   catch (e) {
     throw new Error(exports.letsfileError);
@@ -86,3 +92,4 @@ exports.letsfileError = 'Couldn\'t find a local Letsfile.js';
 exports.lets = undefined;
 exports.letsfile = undefined;
 exports.cwd = undefined;
+exports.argv = undefined;

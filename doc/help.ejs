@@ -3,12 +3,14 @@
 
 Usage
 
-  lets [--version] [--help] <stage> <task>
+  lets [--version] [--help] [--letsfile=<path>] <stage> <task>
 
 Options
 
     --help, -h  Display this help text.
  --version, -v  Print the lets-cli and (if available) lets version.
+    --letsfile  Specify a path to a custom Letsfile. By default, lets looks in the
+                current or parent directories for the nearest Letsfile.js.
 <% if(stages.length) { %>
 
 Available stages
