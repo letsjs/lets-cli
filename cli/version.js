@@ -6,12 +6,12 @@ var logger = require('./logger'),
 module.exports = function () {
   var argv = require('./argv');
 
-  logger.log(pkg.name + ' v' + pkg.version + '\n');
+  logger.log(pkg.name + ' v' + pkg.version);
 
   // Ignore local lets here if it doesn't exist.
   try {
     argv.requireLocalLets();
-    logger.log(argv.lets.pkg.name + ' v' + argv.lets.pkg.version + '\n');
+    logger.log(argv.lets.pkg.name + ' v' + argv.lets.pkg.version);
   }
   catch (e) {}
 };

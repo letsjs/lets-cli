@@ -146,3 +146,7 @@ describe('$ lets -h', function () {
     cli.logger.log.callCount.should.equal(1);
   });
 });
+
+
+// Do other tests 
+require('./logger');

@@ -26,6 +26,9 @@ module.exports = exports = function (argv, cwd) {
   exports.requireLetsfile();
 
   if(argv._.length === 2) {
+    // Attach local log to CLI log
+    logger.capture(exports.lets, argv);
+
     config = exports.loadLetsfile();
     exports.lets.runTasks(config, argv._[0], argv._[1], exports.done);
   }
@@ -72,7 +75,7 @@ exports.requireLetsfile = function () {
 
 exports.done = function (err) {
   if(err) {
-    logger.error(err);
+    logger.error('NOT OK');
   }
   else {
     logger.log('OK');
