@@ -1,0 +1,25 @@
+
+<%= pkg.name %> - <%= pkg.description %> (v<%= pkg.version %>)
+
+Usage
+
+  lets [--version] [--help] <stage> <task>
+
+Options
+
+    --help, -h  Display this help text.
+ --version, -v  Print the lets-cli and (if available) lets version.
+<% if(stages.length) { %>
+
+Available stages
+<% stages.forEach(function (stage) { %>
+  <%= stage %><% });
+}
+if(tasks.length) { %>
+
+Registered tasks
+<% tasks.forEach(function (task) { %>
+  <%= task %><% });
+} %>
+
+For more information, see https://github.com/letsjs/lets

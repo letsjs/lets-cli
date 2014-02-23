@@ -111,3 +111,24 @@ describe('$ lets -v', function () {
       new RegExp(letsPkg.name + ' v' + letsPkg.version.replace(/\./g, '\\.')));
   });
 });
+
+
+describe('$ lets -h', function () {
+  var pkg = require('../package'),
+      letsPkg = require('lets/package');
+
+  before(function () {
+    cli.argv.letsfile = undefined;
+    cli.argv.lets = undefined;
+
+    cli.logger.log = sinon.spy();
+    cli.logger.error = sinon.spy();
+
+    cli.argv({ _: [], h: true }, __dirname);
+  });
+
+  it('should print help', function () {
+    // Don't really know of a good way to test the output
+    cli.logger.log.callCount.should.equal(1);
+  });
+});
