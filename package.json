@@ -4,7 +4,7 @@
   "description": "Command-line interface for Lets",
   "main": "cli/index.js",
   "bin": {
-    "lets": "lets.js"
+    "lets": "./bin/lets.js"
   },
   "directories": {
     "test": "test"
