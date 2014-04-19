@@ -36,6 +36,7 @@ describe('$ lets deploy testing', function () {
     before(function () {
       cli.logger.log = sinon.spy();
       cli.logger.error = sinon.spy();
+      cli.logger.plain = sinon.spy();
 
       cli.argv({ _: [testTask, testStage] }, __dirname);
     });
@@ -58,7 +59,7 @@ describe('$ lets deploy testing', function () {
     });
 
     it('should have exited ok', function () {
-      cli.logger.log.should.have.been.calledWithExactly('OK');
+      cli.logger.plain.should.have.been.calledWithExactly('OK');
     });
   });
 
