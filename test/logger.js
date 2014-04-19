@@ -22,13 +22,13 @@ describe('Logger in normal mode', function () {
 
   it('should log once for "info" and not for "debug"', function () {
     logger.log.callCount.should.equal(1);
-    logger.log.firstCall.should.have.been.calledWithExactly('info1');
+    logger.log.firstCall.should.have.been.calledWithExactly('info', 'info1');
   });
 
   it('should error once for "warn" and once for "error"', function () {
     logger.error.callCount.should.equal(2);
-    logger.error.firstCall.should.have.been.calledWithExactly('warn1');
-    logger.error.secondCall.should.have.been.calledWithExactly('error1');
+    logger.error.firstCall.should.have.been.calledWithExactly('warn', 'warn1');
+    logger.error.secondCall.should.have.been.calledWithExactly('error', 'error1');
   });
 });
 
@@ -43,14 +43,14 @@ describe('Logger in --verbose mode', function () {
 
   it('should log once for "info" and once for "debug"', function () {
     logger.log.callCount.should.equal(2);
-    logger.log.firstCall.should.have.been.calledWithExactly('debug1');
-    logger.log.secondCall.should.have.been.calledWithExactly('info1');
+    logger.log.firstCall.should.have.been.calledWithExactly('debug', 'debug1');
+    logger.log.secondCall.should.have.been.calledWithExactly('info', 'info1');
   });
 
   it('should error once for "warn" and once for "error"', function () {
     logger.error.callCount.should.equal(2);
-    logger.error.firstCall.should.have.been.calledWithExactly('warn1');
-    logger.error.secondCall.should.have.been.calledWithExactly('error1');
+    logger.error.firstCall.should.have.been.calledWithExactly('warn', 'warn1');
+    logger.error.secondCall.should.have.been.calledWithExactly('error', 'error1');
   });
 });
 
@@ -69,8 +69,8 @@ describe('Logger in --quiet mode', function () {
 
   it('should error once for "warn" and once for "error"', function () {
     logger.error.callCount.should.equal(2);
-    logger.error.firstCall.should.have.been.calledWithExactly('warn1');
-    logger.error.secondCall.should.have.been.calledWithExactly('error1');
+    logger.error.firstCall.should.have.been.calledWithExactly('warn', 'warn1');
+    logger.error.secondCall.should.have.been.calledWithExactly('error', 'error1');
   });
 });
 

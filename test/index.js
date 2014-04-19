@@ -135,15 +135,14 @@ describe('$ lets -h', function () {
     cli.argv.letsfile = undefined;
     cli.argv.lets = undefined;
 
-    cli.logger.log = sinon.spy();
-    cli.logger.error = sinon.spy();
+    cli.logger.plain = sinon.spy();
 
     cli.argv({ _: [], h: true }, __dirname);
   });
 
   it('should print help', function () {
     // Don't really know of a good way to test the output
-    cli.logger.log.callCount.should.equal(1);
+    cli.logger.plain.callCount.should.equal(1);
   });
 });
 

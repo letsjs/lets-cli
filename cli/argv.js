@@ -75,10 +75,10 @@ exports.requireLetsfile = function () {
 
 exports.done = function (err) {
   if(err) {
-    logger.error('NOT OK');
+    logger.plain('NOT OK');
   }
   else {
-    logger.log('OK');
+    logger.plain('OK');
   }
 
   //## Handle exiting in a centralized and testable way

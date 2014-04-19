@@ -30,5 +30,5 @@ module.exports = function (args) {
     tasks: tasks
   });
 
-  logger.log(text);
+  logger.plain(text);
 };
