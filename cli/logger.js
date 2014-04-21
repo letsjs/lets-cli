@@ -16,6 +16,9 @@ log.addLevel('debug', 1000, {
   bg: 'black'
 });
 
+// Output everything, handle log levels internally (for now at least)
+log.level = -Infinity;
+
 // Overwrite default prefixes, ensure same length
 log.disp.debug =  'debug';
 log.disp.info =   'info ';
