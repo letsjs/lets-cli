@@ -23,7 +23,7 @@ log.level = -Infinity;
 log.disp.debug =  'debug';
 log.disp.info =   'info ';
 log.disp.warn =   'warn ';
-log.disp.error =  'ERROR';
+log.disp.err =  'ERROR';
 
 
 /* Public methods
@@ -69,7 +69,7 @@ exports.capture = function capture (lets, argv) {
     }
 
     lets.logger.on('warn', exports.error.bind(exports, 'warn'));
-    lets.logger.on('error', exports.error.bind(exports, 'error'));
+    lets.logger.on('err', exports.error.bind(exports, 'err'));
 
     // Warn if someone sets both conflicting flags
     if(isVerbose && isQuiet) {
