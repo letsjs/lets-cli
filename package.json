@@ -1,6 +1,6 @@
 {
   "name": "lets-cli",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Command-line interface for Lets",
   "main": "cli/index.js",
   "bin": {
