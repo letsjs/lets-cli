@@ -28,7 +28,7 @@ describe('Logger in normal mode', function () {
   it('should error once for "warn" and once for "error"', function () {
     logger.error.callCount.should.equal(2);
     logger.error.firstCall.should.have.been.calledWithExactly('warn', 'warn1');
-    logger.error.secondCall.should.have.been.calledWithExactly('err', 'error1');
+    logger.error.secondCall.should.have.been.calledWithExactly('error', 'error1');
   });
 });
 
@@ -50,7 +50,7 @@ describe('Logger in --verbose mode', function () {
   it('should error once for "warn" and once for "error"', function () {
     logger.error.callCount.should.equal(2);
     logger.error.firstCall.should.have.been.calledWithExactly('warn', 'warn1');
-    logger.error.secondCall.should.have.been.calledWithExactly('err', 'error1');
+    logger.error.secondCall.should.have.been.calledWithExactly('error', 'error1');
   });
 });
 
@@ -70,7 +70,7 @@ describe('Logger in --quiet mode', function () {
   it('should error once for "warn" and once for "error"', function () {
     logger.error.callCount.should.equal(2);
     logger.error.firstCall.should.have.been.calledWithExactly('warn', 'warn1');
-    logger.error.secondCall.should.have.been.calledWithExactly('err', 'error1');
+    logger.error.secondCall.should.have.been.calledWithExactly('error', 'error1');
   });
 });
 
